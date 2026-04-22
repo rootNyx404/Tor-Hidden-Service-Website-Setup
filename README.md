@@ -1,87 +1,97 @@
-# 🌐 Tor Hidden Service Website Setup (Educational Project)
+# 🌐 Tor Hidden Service Website Setup (Full A to Z Guide)
 
 ## 📌 Overview
 
-This project demonstrates how to host a local website using Apache and expose it through a Tor Hidden Service (.onion link).
+This project explains step-by-step how to:
 
-👉 I successfully hosted the website and accessed it using **Tor Browser via the generated .onion link**.
+- Install and use Tor Browser  
+- Host a local website using Apache  
+- Expose it as a Tor Hidden Service (.onion site)  
+- Access it securely via the Tor network  
 
-> ⚠️ This project is strictly for educational purposes in a controlled lab environment.
+👉 I successfully hosted the website and accessed it using a generated .onion link.
 
----
-
-## 🛠️ Technologies Used
-
-* Linux (Kali / Parrot / Debian)
-* Apache Web Server
-* Tor Service
-* HTML
+⚠️ This project is strictly for educational purposes in a controlled lab environment.
 
 ---
 
-## 🚀 Steps
+## 🛠️ Step 1: Install Tor Browser
 
-### 1. Install Apache
+### 🔽 Download Tor Browser
+Download from official site:  
+https://www.torproject.org/download/
 
-```bash id="e3a1"
+### 📦 Install (Linux example)
+```bash
+tar -xvf tor-browser-linux*.tar.xz
+cd tor-browser
+./start-tor-browser.desktop
+🛠️ Step 2: Install Apache Web Server
+sudo apt update
 sudo apt install apache2 -y
-```
-
-### 2. Create Website Directory
-
-```bash id="e3a2"
+🛠️ Step 3: Create Website
 sudo mkdir -p /var/www/mywebsite
-```
 
-### 3. Configure Tor Hidden Service
+Create homepage:
 
-Edit:
+sudo nano /var/www/mywebsite/index.html
 
-```bash id="e3a3"
-/etc/tor/torrc
-```
+Paste:
+
+<html>
+  <body>
+    <h1>Hello! My Tor Hidden Website 🚀</h1>
+  </body>
+</html>
+Give feedback
+🛠️ Step 4: Configure Apache
+sudo nano /etc/apache2/sites-enabled/000-default.conf
+
+Change:
+
+DocumentRoot /var/www/mywebsite
+
+Restart:
+
+sudo systemctl restart apache2
+🛠️ Step 5: Install Tor Service
+sudo apt install tor -y
+🛠️ Step 6: Configure Tor Hidden Service
+
+Edit config:
+
+sudo nano /etc/tor/torrc
 
 Add:
 
-```id="e3a4"
 HiddenServiceDir /var/lib/tor/hidden_service
 HiddenServicePort 80 127.0.0.1:80
-```
-
----
-
-### 4. Restart Services
-
-```bash id="e3a5"
-sudo systemctl restart apache2
+🔄 Step 7: Restart Tor
 sudo systemctl restart tor
-```
-
----
-
-### 5. Get Onion Link
-
-```bash id="e3a6"
+🔑 Step 8: Get .onion Link
 sudo cat /var/lib/tor/hidden_service/hostname
-```
 
----
+Example output:
 
-## 🌍 Output
+abcd1234xyz.onion
+🌐 Step 9: Access Website
 
-* Local Website: http://127.0.0.1
-* Onion Website: generated .onion link
-* Accessed successfully via Tor Browser
+Open Tor Browser and visit:
 
----
+http://your-generated-link.onion
 
-## ⚠️ Disclaimer
+✔ Your website is now live on Tor network
 
-This project is for educational and lab use only.
+🌍 Output
+Local Site: http://127.0.0.1
+Onion Site: .onion link generated
+Access: Only via Tor Browser
+⚠️ Disclaimer
 
----
+This project is for:
 
-## 👨‍💻 Author
-  -Arup Halder
-
-Your Name Here
+Educational purpose only
+Cybersecurity learning lab
+Controlled environment use
+👨‍💻 Author
+    -Arup Halder
