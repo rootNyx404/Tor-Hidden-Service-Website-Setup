@@ -37,7 +37,7 @@ Create homepage:
 sudo nano /var/www/mywebsite/index.html
 
 Paste:
-
+(this is website desigen)
 <html>
   <body>
     <h1>Hello! My Tor Hidden Website 🚀</h1>
